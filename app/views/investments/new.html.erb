@@ -1,0 +1,30 @@
+<h1>Calcular Inversión</h1>
+
+<%= form_with model: @investment, url: investments_path do |form| %>
+  <div>
+    <%= form.label :amount, "Monto en USD" %>
+    <%= form.text_field :amount, type: "number" %>
+  </div>
+  <%= form.submit "Calcular" %>
+
+  <div>
+    <hr>
+    <% if @bitcoin_data %>
+      <h2>Bitcoin:</h2>
+      <p>Name: <%= @bitcoin_data['name'] %></p>
+      <p>Symbol: <%= @bitcoin_data['symbol'] %></p>
+      <p>Price (USD): <%= @bitcoin_data['quote']['USD']['price'] %></p>
+    <% else %>
+      <p>Bitcoin data not found</p>
+    <% end %>
+
+    <% if @ethereum_data %>
+      <h2>Ethereum:</h2>
+      <p>Name: <%= @ethereum_data['name'] %></p>
+      <p>Symbol: <%= @ethereum_data['symbol'] %></p>
+      <p>Price (USD): <%= @ethereum_data['quote']['USD']['price'] %></p>
+    <% else %>
+      <p>Ethereum data not found</p>
+    <% end %>
+  </div>
+<% end %>
