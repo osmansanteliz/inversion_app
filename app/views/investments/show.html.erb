@@ -1,0 +1,48 @@
+<h1>Resultados de la Inversión</h1>
+
+<div>
+	<table>
+		<thead>
+			<tr>
+				<th>Monto Inversion</th>
+				<th>Moneda</th>
+				<th>Proyeccion Mensual</th>
+				<th>Proyeccion Anual</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td> <%= @investment.amount %> </td>
+				<td>Bitcoin (BTC)</td>
+				<td> <%= number_to_currency(@bitcoin_projection_monthly) %> </td>
+				<td> <%= number_to_currency(@bitcoin_projection_annual) %> </td>
+			</tr>
+			<tr>
+				<td> <%= @investment.amount %> </td>
+				<td>Ethereum (ETH)</td>
+				<td> <%= number_to_currency(@ethereum_projection_monthly) %> </td>
+				<td> <%= number_to_currency(@ethereum_projection_monthly) %> </td>
+			</tr>
+		</tbody>
+	</table>
+	<%= link_to "Exportar a CSV", export_csv_investment_path(@investment), class: "btn btn-primary" %>
+  <%= link_to "Exportar a JSON", export_json_investment_path(@investment), class: "btn btn-primary" %>
+</div>
+
+<div>
+	<p>La inversión de <%= number_to_currency(@investment.amount) %> USD equivale a:</p>
+
+	<% if @bitcoin_data %>
+	  <h2>Bitcoin:</h2>
+	  <p>Bitcoin Amount: <%= @bitcoin_amount %></p>
+	<% else %>
+	  <p>Bitcoin data not available</p>
+	<% end %>
+
+	<% if @ethereum_data %>
+	  <h2>Ethereum:</h2>
+	  <p>Ethereum Amount: <%= @ethereum_amount %></p>
+	<% else %>
+	  <p>Ethereum data not available</p>
+	<% end %>
+</div>
